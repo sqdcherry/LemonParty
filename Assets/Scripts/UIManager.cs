@@ -27,4 +27,14 @@ public class UIManager : MonoBehaviour
         _lemonsCount += lemonsCount;
         lemonsCountText.text = _lemonsCount.ToString();
     }
+
+    public void OpenPanel(GameObject panel)
+    {
+        panel.SetActive(true);
+    }
+
+    public void ExitPanel(GameObject panel)
+    {
+        panel.SetActive(false);
+    }
 }

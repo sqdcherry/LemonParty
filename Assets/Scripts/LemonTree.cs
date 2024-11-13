@@ -40,7 +40,7 @@ public class LemonTree : MonoBehaviour
 
     private IEnumerator SpawnLimons()
     {
-        if (isReadyToSpawn && collectableStage < 3)
+        if (isReadyToSpawn && collectableStage < 3 && GetCollectableStage())
         {
             isReadyToSpawn = false;
             collectableStage++;
@@ -229,7 +229,6 @@ public class LemonTree : MonoBehaviour
         if (collectableStage > 0)
         {
             collectableStage--;
-            Debug.Log(collectableStage);
             UpdateState();
             UIManager.instance.UpdateLemonsCountText(1);
         }

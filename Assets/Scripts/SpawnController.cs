@@ -43,7 +43,7 @@ public class SpawnController : MonoBehaviour
 
     public void Collect()
     {
-        int currentColectItem = Random.Range(0, 2);
+        int currentColectItem = Random.Range(0, boughtLemonsList.Count);
         boughtLemonsList[currentColectItem].GetComponent<LemonTree>().Collected();    
     }
 
