@@ -22,15 +22,15 @@ public class LemonTree : MonoBehaviour
 
     private void Awake()
     {
+        //PlayerPrefs.DeleteKey($"PlotState{index}");
         PlayerPrefs.SetInt($"PlotState{0}", 3);
-        Debug.Log(PlayerPrefs.GetInt($"PlotState{index}"));
 
         CheakState();
     }
 
     private void Start()
     {
-        collectableStage = 1;
+        collectableStage = 0;
     }
 
     private void Update()
@@ -40,12 +40,13 @@ public class LemonTree : MonoBehaviour
 
     private IEnumerator SpawnLimons()
     {
-        if (isReadyToSpawn && collectableStage < 3 && GetCollectableStage())
+        if (isReadyToSpawn && collectableStage < 1)
         {
             isReadyToSpawn = false;
+            yield return new WaitForSeconds(0.1f);
             collectableStage++;
             UpdateState();
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(3f);
             isReadyToSpawn = true;
         }
     }
@@ -64,6 +65,7 @@ public class LemonTree : MonoBehaviour
                         _plot.SetActive(false);
                         _digUpPlot.SetActive(false);
                         _tree.SetActive(false);
+                    
                     }
                     break;
                 case 1:
@@ -149,25 +151,25 @@ public class LemonTree : MonoBehaviour
         }
     }
 
-    public bool GetCollectableStage()
+    public int GetCurrentStage()
     {
         int currentState = PlayerPrefs.GetInt($"PlotState{index}");
 
         if (currentState == 3)
         {
-            return true;
+            return 3;
         }
         else if (currentState == 2)
         {
-            return false;
+            return 2;
         }
         else if (currentState == 1)
         {
-            return false;
+            return 1;
         }
         else
         {
-            return false;
+            return 0;
         }
     }
 
@@ -220,8 +222,6 @@ public class LemonTree : MonoBehaviour
                 break;
 
         }
-        
-        CheakState();
     }
 
     public void Collected()
@@ -230,6 +230,7 @@ public class LemonTree : MonoBehaviour
         {
             collectableStage--;
             UpdateState();
+            Debug.Log(gameObject);
             UIManager.instance.UpdateLemonsCountText(1);
         }
     }
