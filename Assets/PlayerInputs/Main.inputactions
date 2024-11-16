@@ -1,0 +1,40 @@
+{
+    "name": "Main",
+    "maps": [
+        {
+            "name": "Phone",
+            "id": "6b32dc30-d346-4fc2-b3dc-190ce2695545",
+            "actions": [
+                {
+                    "name": "Moving",
+                    "type": "Value",
+                    "id": "b8f94641-7877-40a9-8286-99d04ace3f93",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "247bc3b0-7171-46d2-a8b9-8440c279095a",
+                    "path": "<Touchscreen>/position",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "Phone",
+                    "action": "Moving",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": [
+        {
+            "name": "Phone",
+            "bindingGroup": "Phone",
+            "devices": []
+        }
+    ]
+}
