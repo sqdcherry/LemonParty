@@ -4,7 +4,6 @@ using UnityEngine;
 public class TreeController : MonoBehaviour
 {
     [SerializeField] private BuyTreePanel panel;
-    [SerializeField] private List<Cell> spawnPosList;
     [SerializeField] private List<GameObject> lemonsList;
     [SerializeField] private List<GameObject> boughtLemonsList;
 

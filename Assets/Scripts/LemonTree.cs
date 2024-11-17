@@ -8,9 +8,10 @@ public class LemonTree : MonoBehaviour
     [SerializeField] private GameObject _digUpPlot;
     [SerializeField] private GameObject _tree;
 
-    [SerializeField] private Sprite lowCountLimons;
-    [SerializeField] private Sprite midCountLimons;
-    [SerializeField] private Sprite hightCountLimons;
+    [SerializeField] private GameObject noneCountLimons;
+    [SerializeField] private GameObject lowCountLimons;
+    [SerializeField] private GameObject midCountLimons;
+    [SerializeField] private GameObject hightCountLimons;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
 
@@ -131,24 +132,33 @@ public class LemonTree : MonoBehaviour
 
     private void UpdateState()
     {
-        if (spriteRenderer)
-        {
             switch (collectableStage)
             {
                 case 1:
-                    spriteRenderer.sprite = lowCountLimons;
+                    lowCountLimons.SetActive(true);
+                    midCountLimons.SetActive(false);
+                    hightCountLimons.SetActive(false);
+                    noneCountLimons.SetActive(false);
                     break;
                 case 2:
-                    spriteRenderer.sprite = midCountLimons;
+                    lowCountLimons.SetActive(false);
+                    midCountLimons.SetActive(true);
+                    hightCountLimons.SetActive(false);
+                    noneCountLimons.SetActive(false);
                     break;
                 case 3:
-                    spriteRenderer.sprite = hightCountLimons;
+                    lowCountLimons.SetActive(false);
+                    midCountLimons.SetActive(false);
+                    hightCountLimons.SetActive(true);
+                    noneCountLimons.SetActive(false);
                     break;
                 case 0:
-                    spriteRenderer.sprite = lowCountLimons;
+                    lowCountLimons.SetActive(false);
+                    midCountLimons.SetActive(false);
+                    hightCountLimons.SetActive(false);
+                    noneCountLimons.SetActive(true);
                     break;
             }
-        }
     }
 
     public int GetCurrentStage()
@@ -214,13 +224,6 @@ public class LemonTree : MonoBehaviour
                     PlayerPrefs.SetInt($"PlotState{index}", 3);
                 }
                 break;
-            case 3:
-                {
-                    // upgrade
-                    Debug.Log("upgrade");
-                }
-                break;
-
         }
     }
 
