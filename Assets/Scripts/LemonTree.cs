@@ -29,14 +29,31 @@ public class LemonTree : MonoBehaviour
         CheakState();
     }
 
+    private int rewardPerClick
+    {
+        get => PlayerPrefs.GetInt($"CurrentRewardPerClick{index}", 0);
+        set => PlayerPrefs.SetInt($"CurrentRewardPerClick{index}", value);
+    }
+
     private void Start()
     {
+        if (rewardPerClick == 0)
+        {
+            rewardPerClick = 1;
+        }
+        //PlayerPrefs.SetInt($"CurrentRewardPerClick{0}", 5);
+
         collectableStage = 0;
     }
 
     private void Update()
     {
         StartCoroutine(SpawnLimons());
+    }
+
+    public void SetValueRewardPerClick(int countPerClick)
+    {
+        rewardPerClick = countPerClick;
     }
 
     private IEnumerator SpawnLimons()
@@ -234,7 +251,7 @@ public class LemonTree : MonoBehaviour
             collectableStage--;
             UpdateState();
             Debug.Log(gameObject);
-            UIManager.instance.UpdateLemonsCountText(1);
+            UIManager.instance.UpdateLemonsCountText(rewardPerClick);
         }
     }
 }

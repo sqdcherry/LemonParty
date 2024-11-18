@@ -1,15 +1,19 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreeController : MonoBehaviour
+public class TreeManager : MonoBehaviour
 {
     [SerializeField] private BuyTreePanel panel;
     [SerializeField] private List<GameObject> lemonsList;
-    [SerializeField] private List<GameObject> boughtLemonsList;
+    [SerializeField] private List<GameObject> activeTreesList;
 
     private bool isReadyToSpawn = true;
     private LemonTree _currentLimonTree;
     private int _currentPrice;
+
+    public static Action onBuyWorker;
+    public static Action onBuyCar;
 
     private int spawnDelay
     {
@@ -17,35 +21,27 @@ public class TreeController : MonoBehaviour
         set => PlayerPrefs.SetInt("SpawnRate", value);
     }
 
-    private static int rewardPerClick
-    {
-        get => PlayerPrefs.GetInt("CurrentRewardPerClick", 0);
-        set => PlayerPrefs.SetInt("CurrentRewardPerClick", value);
-    }
-
-    public void SetValueRewardPerClick(int countPerClick)
-    {
-        rewardPerClick = countPerClick;
-    }
 
     private void Start()
     {
+        // set trees for upgrade
+        // set trees upgare level
         for (int i = 0; i < lemonsList.Count; i++)
         {
             if (lemonsList[i].GetComponent<LemonTree>().GetCurrentStage() == 3)
-                SetBoughtLemonsList(lemonsList[i]);
+                SetSertActiveTreesList(lemonsList[i]);
         }
     }
 
-    public void SetBoughtLemonsList(GameObject boughtLemonTree)
+    public void SetSertActiveTreesList(GameObject boughtLemonTree)
     {
-        boughtLemonsList.Add(boughtLemonTree);
+        activeTreesList.Add(boughtLemonTree);
     }
 
     public void Collect()
     {
-        int currentColectItem = Random.Range(0, boughtLemonsList.Count);
-        boughtLemonsList[currentColectItem].GetComponent<LemonTree>().Collected();    
+        int currentColectItem = UnityEngine.Random.Range(0, activeTreesList.Count);
+        activeTreesList[currentColectItem].GetComponent<LemonTree>().Collected();    
     }
 
     public void BuyPlotPanel(LemonTree currentLimonTree)
@@ -86,7 +82,41 @@ public class TreeController : MonoBehaviour
 
             int currentStage = _currentLimonTree.GetCurrentStage();
             if (currentStage == 3)
-                boughtLemonsList.Add(_currentLimonTree.gameObject);
+                activeTreesList.Add(_currentLimonTree.gameObject);
         }
+    }
+
+    public void BuyWorker()
+    {
+        Debug.Log("WorkerIsBought");
+        //+ pasive rewards
+    }
+
+    public void BuyCar()
+    {
+        Debug.Log("CarIsBought");
+        //+ pasive rewards
+    }
+
+    public void UpgradeTrees()
+    {
+        GameObject currentLemonTree = GetComponent<LemonTree>().gameObject;
+
+        for (int i = 0; i < activeTreesList.Count; i++)
+        {
+            // set trees for upgrade
+        }
+    }
+
+    private void OnEnable()
+    {
+        onBuyWorker += BuyWorker;
+        onBuyCar += BuyCar;
+    }
+
+    private void OnDisable()
+    {
+        onBuyWorker -= BuyWorker;
+        onBuyCar -= BuyCar;
     }
 }
