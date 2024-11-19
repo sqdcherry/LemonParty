@@ -1,10 +1,13 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
     [SerializeField] private TMP_Text lemonsCountText;
+    [SerializeField] private GameObject workersPanel;
+    [SerializeField] private GameObject ugradesPanel;
 
     private int _lemonsCount
     {
@@ -41,5 +44,19 @@ public class UIManager : MonoBehaviour
     public void ExitPanel(GameObject panel)
     {
         panel.SetActive(false);
+    }
+
+    public void SwapPanels()
+    {
+        if (workersPanel.activeSelf)
+        {
+            workersPanel.SetActive(false);
+            ugradesPanel.SetActive(true);
+        }
+        else
+        {
+            workersPanel.SetActive(true);
+            ugradesPanel.SetActive(false);
+        }
     }
 }
