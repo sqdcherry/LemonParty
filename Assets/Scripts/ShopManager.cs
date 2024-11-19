@@ -33,8 +33,7 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
-            if (PlayerPrefs.GetInt("CarIsBought") < 5)
-                PlayerPrefs.SetInt("CarIsBought", 1);
+            PlayerPrefs.SetInt("CarIsBought", 1);
         }
 
         TreeManager.onBuyCar?.Invoke();

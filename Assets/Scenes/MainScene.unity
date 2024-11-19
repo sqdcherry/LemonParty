@@ -1773,8 +1773,8 @@ MonoBehaviour:
   _tree: {fileID: 1177986613}
   noneCountLimons: {fileID: 886605730}
   lowCountLimons: {fileID: 1676979720}
-  midCountLimons: {fileID: 1400969637}
-  hightCountLimons: {fileID: 953209246}
+  midCountLimons: {fileID: 0}
+  hightCountLimons: {fileID: 0}
   spriteRenderer: {fileID: 0}
   index: 6
 --- !u!1 &306775084
@@ -2710,8 +2710,8 @@ MonoBehaviour:
   _tree: {fileID: 1691028348}
   noneCountLimons: {fileID: 437506143}
   lowCountLimons: {fileID: 1609875880}
-  midCountLimons: {fileID: 1972972876}
-  hightCountLimons: {fileID: 710636424}
+  midCountLimons: {fileID: 0}
+  hightCountLimons: {fileID: 0}
   spriteRenderer: {fileID: 0}
   index: 3
 --- !u!1 &424244372
@@ -5003,7 +5003,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &759950253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7375,8 +7375,8 @@ MonoBehaviour:
   _tree: {fileID: 1950786249}
   noneCountLimons: {fileID: 1744470110}
   lowCountLimons: {fileID: 401596566}
-  midCountLimons: {fileID: 1361940565}
-  hightCountLimons: {fileID: 171637894}
+  midCountLimons: {fileID: 0}
+  hightCountLimons: {fileID: 0}
   spriteRenderer: {fileID: 0}
   index: 5
 --- !u!1 &1071731150
@@ -10506,8 +10506,8 @@ MonoBehaviour:
   _tree: {fileID: 5264089860175197672}
   noneCountLimons: {fileID: 1119035114}
   lowCountLimons: {fileID: 306775084}
-  midCountLimons: {fileID: 1810500888}
-  hightCountLimons: {fileID: 1755660371}
+  midCountLimons: {fileID: 0}
+  hightCountLimons: {fileID: 0}
   spriteRenderer: {fileID: 0}
   index: 1
 --- !u!1 &1454975073
@@ -14117,8 +14117,8 @@ MonoBehaviour:
   _tree: {fileID: 453131756}
   noneCountLimons: {fileID: 1545805857}
   lowCountLimons: {fileID: 1869129186}
-  midCountLimons: {fileID: 124456649}
-  hightCountLimons: {fileID: 981049067}
+  midCountLimons: {fileID: 0}
+  hightCountLimons: {fileID: 0}
   spriteRenderer: {fileID: 0}
   index: 4
 --- !u!1 &1813248129
@@ -16792,8 +16792,8 @@ MonoBehaviour:
   _tree: {fileID: 2302572106702648225}
   noneCountLimons: {fileID: 712985261}
   lowCountLimons: {fileID: 778757655}
-  midCountLimons: {fileID: 1474987203}
-  hightCountLimons: {fileID: 1797597094}
+  midCountLimons: {fileID: 0}
+  hightCountLimons: {fileID: 0}
   spriteRenderer: {fileID: 0}
   index: 2
 --- !u!1001 &6355266058593946307

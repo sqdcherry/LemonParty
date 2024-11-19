@@ -8,6 +8,7 @@ public class LemonTree : MonoBehaviour
     [SerializeField] private GameObject _digUpPlot;
     [SerializeField] private GameObject _tree;
 
+    private GameObject currentLemonsCount;
     [SerializeField] private GameObject noneCountLimons;
     [SerializeField] private GameObject lowCountLimons;
     [SerializeField] private GameObject midCountLimons;
@@ -25,6 +26,27 @@ public class LemonTree : MonoBehaviour
     {
         //PlayerPrefs.DeleteKey($"PlotState{index}");
         PlayerPrefs.SetInt($"PlotState{0}", 3);
+
+        if (PlayerPrefs.HasKey($"UpgradeState{index}"))
+        {
+            if (PlayerPrefs.GetInt($"UpgradeState{index}") == 0)
+            {
+                currentLemonsCount = lowCountLimons;
+            }
+            else if (PlayerPrefs.GetInt("UpgradeState") == 1)
+            {
+                currentLemonsCount = midCountLimons;
+            }
+            else if (PlayerPrefs.GetInt("UpgradeState") == 2)
+            {
+                currentLemonsCount = midCountLimons;
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("UpgradeState", 0);
+            currentLemonsCount = lowCountLimons;
+        }
 
         CheakState();
     }
@@ -63,8 +85,9 @@ public class LemonTree : MonoBehaviour
             isReadyToSpawn = false;
             yield return new WaitForSeconds(0.1f);
             collectableStage++;
-            UpdateState();
+            currentLemonsCount.SetActive(false);
             yield return new WaitForSeconds(3f);
+            currentLemonsCount.SetActive(true);
             isReadyToSpawn = true;
         }
     }
@@ -149,33 +172,37 @@ public class LemonTree : MonoBehaviour
 
     private void UpdateState()
     {
-            switch (collectableStage)
+        if (PlayerPrefs.HasKey($"UpgradeState{index}"))
+        {
+            if (PlayerPrefs.GetInt($"UpgradeState{index}") == 0)
             {
-                case 1:
-                    lowCountLimons.SetActive(true);
-                    midCountLimons.SetActive(false);
-                    hightCountLimons.SetActive(false);
-                    noneCountLimons.SetActive(false);
-                    break;
-                case 2:
-                    lowCountLimons.SetActive(false);
-                    midCountLimons.SetActive(true);
-                    hightCountLimons.SetActive(false);
-                    noneCountLimons.SetActive(false);
-                    break;
-                case 3:
-                    lowCountLimons.SetActive(false);
-                    midCountLimons.SetActive(false);
-                    hightCountLimons.SetActive(true);
-                    noneCountLimons.SetActive(false);
-                    break;
-                case 0:
-                    lowCountLimons.SetActive(false);
-                    midCountLimons.SetActive(false);
-                    hightCountLimons.SetActive(false);
-                    noneCountLimons.SetActive(true);
-                    break;
+                lowCountLimons.SetActive(true);
+                midCountLimons.SetActive(false);
+                hightCountLimons.SetActive(false);
+                noneCountLimons.SetActive(false);
             }
+            else if (PlayerPrefs.GetInt($"UpgradeState{index}") == 1)
+            {
+                lowCountLimons.SetActive(false);
+                midCountLimons.SetActive(true);
+                hightCountLimons.SetActive(false);
+                noneCountLimons.SetActive(false);
+            }
+            else if (PlayerPrefs.GetInt($"UpgradeState{index}") == 2)
+            {
+                lowCountLimons.SetActive(false);
+                midCountLimons.SetActive(false);
+                hightCountLimons.SetActive(true);
+                noneCountLimons.SetActive(false);
+            }
+            else
+            {
+                lowCountLimons.SetActive(false);
+                midCountLimons.SetActive(false);
+                hightCountLimons.SetActive(false);
+                noneCountLimons.SetActive(true);
+            }        
+        }
     }
 
     public int GetCurrentStage()
