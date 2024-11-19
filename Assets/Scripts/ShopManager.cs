@@ -9,6 +9,7 @@ public class ShopManager : MonoBehaviour
 
     public void OnBuyWorker()
     {
+        // if lemons amount - price <= 0
         if (PlayerPrefs.HasKey("WorkerIsBought"))
         {
             if (PlayerPrefs.GetInt("WorkerIsBought") < 5)
@@ -16,8 +17,7 @@ public class ShopManager : MonoBehaviour
         }
         else
         {
-            if (PlayerPrefs.GetInt("WorkerIsBought") < 5)
-                PlayerPrefs.SetInt("WorkerIsBought", 1);
+            PlayerPrefs.SetInt("WorkerIsBought", 1);
         }
 
         TreeManager.onBuyWorker?.Invoke();
@@ -26,6 +26,7 @@ public class ShopManager : MonoBehaviour
 
     public void OnBuyCar()
     {
+        // if lemons amount - price <= 0
         if (PlayerPrefs.HasKey("CarIsBought"))
         {
             if (PlayerPrefs.GetInt("CarIsBought") < 5)

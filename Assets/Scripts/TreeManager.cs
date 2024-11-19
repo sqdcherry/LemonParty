@@ -29,11 +29,11 @@ public class TreeManager : MonoBehaviour
         for (int i = 0; i < lemonsList.Count; i++)
         {
             if (lemonsList[i].GetComponent<LemonTree>().GetCurrentStage() == 3)
-                SetSertActiveTreesList(lemonsList[i]);
+                SetActiveTreesList(lemonsList[i]);
         }
     }
 
-    public void SetSertActiveTreesList(GameObject boughtLemonTree)
+    public void SetActiveTreesList(GameObject boughtLemonTree)
     {
         activeTreesList.Add(boughtLemonTree);
     }
@@ -88,24 +88,33 @@ public class TreeManager : MonoBehaviour
 
     public void BuyWorker()
     {
+        // if lemons amount - price <= 0
         Debug.Log("WorkerIsBought");
         //+ pasive rewards
     }
 
     public void BuyCar()
     {
+        // if lemons amount - price <= 0
         Debug.Log("CarIsBought");
         //+ pasive rewards
     }
 
     public void UpgradeTrees()
     {
-        GameObject currentLemonTree = GetComponent<LemonTree>().gameObject;
+        // if lemons amount - price <= 0 %% 
+        GameObject currentLemonTree = null;
 
         for (int i = 0; i < activeTreesList.Count; i++)
         {
-            // set trees for upgrade
+            if (activeTreesList[i].GetComponent<LemonTree>().GetUpgradeState() < 2)
+            {
+                activeTreesList[i].GetComponent<LemonTree>().UpgradeState(2);
+                return;
+            }
         }
+
+        //currentLemonTree.GetComponent<LemonTree>().SetUpgradeState(1);
     }
 
     private void OnEnable()

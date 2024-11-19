@@ -8,7 +8,6 @@ public class LemonTree : MonoBehaviour
     [SerializeField] private GameObject _digUpPlot;
     [SerializeField] private GameObject _tree;
 
-    private GameObject currentLemonsCount;
     [SerializeField] private GameObject noneCountLimons;
     [SerializeField] private GameObject lowCountLimons;
     [SerializeField] private GameObject midCountLimons;
@@ -18,43 +17,31 @@ public class LemonTree : MonoBehaviour
 
     [SerializeField] private int index;
 
+    private GameObject currentLemonsCount;
+
     private int collectableStage;
     private bool isReadyToSpawn = true;
     private bool isBought;
+
+    private int rewardPerClick
+    {
+        get => PlayerPrefs.GetInt($"CurrentRewardPerClick{index}", 0);
+        set => PlayerPrefs.SetInt($"CurrentRewardPerClick{index}", value);
+    }
+    
+    private int upgradeState
+    {
+        get => PlayerPrefs.GetInt($"UpgradeState{index}", 0);
+        set => PlayerPrefs.SetInt($"UpgradeState{index}", value);
+    }
 
     private void Awake()
     {
         //PlayerPrefs.DeleteKey($"PlotState{index}");
         PlayerPrefs.SetInt($"PlotState{0}", 3);
 
-        if (PlayerPrefs.HasKey($"UpgradeState{index}"))
-        {
-            if (PlayerPrefs.GetInt($"UpgradeState{index}") == 0)
-            {
-                currentLemonsCount = lowCountLimons;
-            }
-            else if (PlayerPrefs.GetInt("UpgradeState") == 1)
-            {
-                currentLemonsCount = midCountLimons;
-            }
-            else if (PlayerPrefs.GetInt("UpgradeState") == 2)
-            {
-                currentLemonsCount = midCountLimons;
-            }
-        }
-        else
-        {
-            PlayerPrefs.SetInt("UpgradeState", 0);
-            currentLemonsCount = lowCountLimons;
-        }
-
+        UpdateState();
         CheakState();
-    }
-
-    private int rewardPerClick
-    {
-        get => PlayerPrefs.GetInt($"CurrentRewardPerClick{index}", 0);
-        set => PlayerPrefs.SetInt($"CurrentRewardPerClick{index}", value);
     }
 
     private void Start()
@@ -63,8 +50,7 @@ public class LemonTree : MonoBehaviour
         {
             rewardPerClick = 1;
         }
-        //PlayerPrefs.SetInt($"CurrentRewardPerClick{0}", 5);
-
+        
         collectableStage = 0;
     }
 
@@ -86,8 +72,10 @@ public class LemonTree : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             collectableStage++;
             currentLemonsCount.SetActive(false);
+            noneCountLimons.SetActive(true);
             yield return new WaitForSeconds(3f);
             currentLemonsCount.SetActive(true);
+            noneCountLimons.SetActive(false);
             isReadyToSpawn = true;
         }
     }
@@ -144,64 +132,25 @@ public class LemonTree : MonoBehaviour
             PlayerPrefs.SetInt($"PlotState{index}", 0);
         }
     }
-    //private void CheakIsBought()
-    //{
-    //    if (PlayerPrefs.HasKey($"PlotIsBought{index}"))
-    //    {
-    //        if (PlayerPrefs.GetInt($"PlotIsBought{index}") == 1)
-    //        {
-    //            isBought = true;
-    //            activeTree.SetActive(true);
-    //            nonActiveTree.SetActive(false);
-    //        }
-    //        else
-    //        {
-    //            isBought = false;
-    //            activeTree.SetActive(false);
-    //            nonActiveTree.SetActive(true);
-    //        }
-    //    }
-    //    else
-    //    {
-    //        isBought = false;
-    //        activeTree.SetActive(false);
-    //        nonActiveTree.SetActive(true);
-    //        PlayerPrefs.SetInt($"PlotIsBought{index}", 0);
-    //    }
-    //}
+
 
     private void UpdateState()
     {
-        if (PlayerPrefs.HasKey($"UpgradeState{index}"))
+        if (upgradeState == 0)
         {
-            if (PlayerPrefs.GetInt($"UpgradeState{index}") == 0)
-            {
-                lowCountLimons.SetActive(true);
-                midCountLimons.SetActive(false);
-                hightCountLimons.SetActive(false);
-                noneCountLimons.SetActive(false);
-            }
-            else if (PlayerPrefs.GetInt($"UpgradeState{index}") == 1)
-            {
-                lowCountLimons.SetActive(false);
-                midCountLimons.SetActive(true);
-                hightCountLimons.SetActive(false);
-                noneCountLimons.SetActive(false);
-            }
-            else if (PlayerPrefs.GetInt($"UpgradeState{index}") == 2)
-            {
-                lowCountLimons.SetActive(false);
-                midCountLimons.SetActive(false);
-                hightCountLimons.SetActive(true);
-                noneCountLimons.SetActive(false);
-            }
-            else
-            {
-                lowCountLimons.SetActive(false);
-                midCountLimons.SetActive(false);
-                hightCountLimons.SetActive(false);
-                noneCountLimons.SetActive(true);
-            }        
+            currentLemonsCount = noneCountLimons;
+        }
+        else if (upgradeState == 1)
+        {
+            currentLemonsCount = lowCountLimons;
+        }
+        else if (upgradeState == 2)
+        {
+            currentLemonsCount = midCountLimons;
+        }
+        else
+        {
+            currentLemonsCount = hightCountLimons;
         }
     }
 
@@ -209,22 +158,7 @@ public class LemonTree : MonoBehaviour
     {
         int currentState = PlayerPrefs.GetInt($"PlotState{index}");
 
-        if (currentState == 3)
-        {
-            return 3;
-        }
-        else if (currentState == 2)
-        {
-            return 2;
-        }
-        else if (currentState == 1)
-        {
-            return 1;
-        }
-        else
-        {
-            return 0;
-        }
+        return currentState;
     }
 
     public bool GetIsBought()
@@ -233,6 +167,17 @@ public class LemonTree : MonoBehaviour
             return true;
         else
             return false;
+    }
+
+    public int GetUpgradeState()
+    {
+        return upgradeState;
+    }
+
+    public void UpgradeState(int value)
+    {
+        upgradeState += 1;
+        rewardPerClick *= value;
     }
 
     public void BuyPlot()
@@ -276,7 +221,8 @@ public class LemonTree : MonoBehaviour
         if (collectableStage > 0)
         {
             collectableStage--;
-            UpdateState();
+            currentLemonsCount.SetActive(false);
+            noneCountLimons.SetActive(true);
             Debug.Log(gameObject);
             UIManager.instance.UpdateLemonsCountText(rewardPerClick);
         }
