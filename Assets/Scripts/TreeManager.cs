@@ -32,7 +32,7 @@ public class TreeManager : MonoBehaviour
         for (int i = 0; i < lemonsList.Count; i++)
         {
             if (lemonsList[i].GetComponent<LemonTree>().GetCurrentStage() == 3)
-                SetActiveTreesList(lemonsList[i]);
+                activeTreesList.Add(lemonsList[i]);
         }
     }
 
@@ -44,11 +44,6 @@ public class TreeManager : MonoBehaviour
             UIManager.instance.UpdateLemonsCountText(pasiveLemons);
             yield return new WaitForSeconds(1f);
         }
-    }
-
-    public void SetActiveTreesList(GameObject boughtLemonTree)
-    {
-        activeTreesList.Add(boughtLemonTree);
     }
 
     public void Collect()
@@ -115,30 +110,32 @@ public class TreeManager : MonoBehaviour
 
     public void UpgradeTrees()
     {
-        // if lemons amount - price <= 0 %% 
-        GameObject currentLemonTree = null;
-
-        for (int i = 0; i < activeTreesList.Count; i++)
+        if (UIManager.instance.GetLemonsCount() - 1 >= 0)
         {
-            if (activeTreesList[i].GetComponent<LemonTree>().GetUpgradeState() < 2)
+            for (int i = 0; i < activeTreesList.Count; i++)
             {
-                activeTreesList[i].GetComponent<LemonTree>().SetUpgradeState(1);
-                return;
+                if (activeTreesList[i].GetComponent<LemonTree>().GetUpgradeState() < 2)
+                {
+                    activeTreesList[i].GetComponent<LemonTree>().SetUpgradeState(1);
+                    return;
+                }
             }
         }
-
-        //currentLemonTree.GetComponent<LemonTree>().SetUpgradeState(1);
+        else
+            Debug.Log("Pop-up");
     }
 
     private void OnEnable()
     {
         onBuyWorker += BuyWorker;
         onBuyCar += BuyCar;
+        onBuyCar += UpgradeTrees;
     }
 
     private void OnDisable()
     {
         onBuyWorker -= BuyWorker;
         onBuyCar -= BuyCar;
+        onBuyCar -= UpgradeTrees;
     }
 }
