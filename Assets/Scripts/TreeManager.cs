@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,14 +9,15 @@ public class TreeManager : MonoBehaviour
     [SerializeField] private List<GameObject> lemonsList;
     [SerializeField] private List<GameObject> activeTreesList;
 
-    private bool isReadyToSpawn = true;
+    private bool isReadyToCollect = true;
     private LemonTree _currentLimonTree;
     private int _currentPrice;
 
     public static Action onBuyWorker;
     public static Action onBuyCar;
+    public static Action onUpgrade;
 
-    private int spawnDelay
+    private int pasiveLemons
     {
         get => PlayerPrefs.GetInt("SpawnRate", 0);
         set => PlayerPrefs.SetInt("SpawnRate", value);
@@ -24,12 +26,23 @@ public class TreeManager : MonoBehaviour
 
     private void Start()
     {
+        pasiveLemons = 1;
         // set trees for upgrade
         // set trees upgare level
         for (int i = 0; i < lemonsList.Count; i++)
         {
             if (lemonsList[i].GetComponent<LemonTree>().GetCurrentStage() == 3)
                 SetActiveTreesList(lemonsList[i]);
+        }
+    }
+
+    private IEnumerator PasiveCollect()
+    {
+        if (isReadyToCollect)
+        {
+            isReadyToCollect = false;
+            UIManager.instance.UpdateLemonsCountText(pasiveLemons);
+            yield return new WaitForSeconds(1f);
         }
     }
 
@@ -109,7 +122,7 @@ public class TreeManager : MonoBehaviour
         {
             if (activeTreesList[i].GetComponent<LemonTree>().GetUpgradeState() < 2)
             {
-                activeTreesList[i].GetComponent<LemonTree>().UpgradeState(2);
+                activeTreesList[i].GetComponent<LemonTree>().SetUpgradeState(1);
                 return;
             }
         }

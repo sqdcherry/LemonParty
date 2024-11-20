@@ -18,6 +18,15 @@ public class Basket : MonoBehaviour
         worldCoordinates.z = 0;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Lemon"))
+        {
+            UIManager.instance.UpdateLemonsCountText(50);
+            Destroy(collision.gameObject);
+        }
+    }
+
     private void OnEnable()
     {
         inputs.Enable();

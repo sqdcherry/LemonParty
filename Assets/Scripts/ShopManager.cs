@@ -42,13 +42,7 @@ public class ShopManager : MonoBehaviour
     }
 
     public void OnBuyUpgarade()
-    { 
-        // if all trees doesnt upgrade
-        // actoin buy ugrade
-    }
-
-    public void OnSwapPanels()
     {
-        
+        TreeManager.onUpgrade?.Invoke();
     }
 }
