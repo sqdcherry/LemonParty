@@ -9,12 +9,9 @@ public class RewardController : MonoBehaviour
     [SerializeField] private Button claimButton;
 
     [SerializeField] private List<RewardPref> rewardPrefabs;
-    [SerializeField] private List<Reward> rewards;
-
-    [SerializeField] private Transform rewardGrid;
 
     private bool canClaimRewad;
-    private float claimCooldown = 24f;
+    private float claimCooldown = 24f / 24 / 60 / 6 / 6;
     private float claimDeadTime = 48f;
 
     private int currentStreak
@@ -45,6 +42,7 @@ public class RewardController : MonoBehaviour
 
     private void Start()
     {
+        //currentStreak = 0;
         InitPrefabs();
         StartCoroutine(RewardStateUpdater());
     }
@@ -87,7 +85,7 @@ public class RewardController : MonoBehaviour
     private void UpdaterewardUI()
     {
         claimButton.interactable = canClaimRewad;
-        rewardPrefabs[currentStreak].SetInreactable(canClaimRewad);
+        //rewardPrefabs[currentStreak].SetInreactable(canClaimRewad);
         claimButton.transform.position = rewardPrefabs[currentStreak].transform.position;
     }
 
@@ -96,6 +94,7 @@ public class RewardController : MonoBehaviour
         if (!canClaimRewad)
             return;
 
+        Debug.Log(rewardPrefabs[currentStreak]);
         var reward = rewardPrefabs[currentStreak];
         rewardPrefabs[currentStreak].SetCross(true, false);
 
@@ -112,7 +111,7 @@ public class RewardController : MonoBehaviour
         lastClaimTime = DateTime.UtcNow;
 
         UpdateRewardsState();
-        currentStreak = (currentStreak + 1) % 18;
+        currentStreak = (currentStreak + 1) % 6;
 
         //if (PlayerPrefs.HasKey("Notification"))
         //{
