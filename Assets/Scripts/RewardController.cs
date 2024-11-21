@@ -7,15 +7,11 @@ using UnityEngine.UI;
 public class RewardController : MonoBehaviour
 {
     [SerializeField] private Button claimButton;
-    [Space(18)]
-    [SerializeField] private RewardPref rewardPref;
 
-    [Space(18)]
+    [SerializeField] private List<RewardPref> rewardPrefabs;
     [SerializeField] private List<Reward> rewards;
 
     [SerializeField] private Transform rewardGrid;
-
-    private List<RewardPref> rewardPrefabs;
 
     private bool canClaimRewad;
     private float claimCooldown = 24f;
@@ -55,18 +51,8 @@ public class RewardController : MonoBehaviour
 
     private void InitPrefabs()
     {
-        rewardPrefabs = new List<RewardPref>();
-
-        for (int i = 0; i < 18; i++)
-        {
-            rewardPrefabs.Add(Instantiate(rewardPref, rewardGrid, false));
-            rewardPrefabs[i].SetRewarData(i, rewards[i].Value, rewards[i]);
-        }
-
         for (int i = 0; i < currentStreak; i++)
             rewardPrefabs[i].SetCross(true, false);
-
-        claimButton.transform.position = rewardPrefabs[currentStreak].transform.position;
     }
 
     private IEnumerator RewardStateUpdater()
@@ -110,28 +96,28 @@ public class RewardController : MonoBehaviour
         if (!canClaimRewad)
             return;
 
-        var reward = rewards[currentStreak];
+        var reward = rewardPrefabs[currentStreak];
         rewardPrefabs[currentStreak].SetCross(true, false);
 
-        switch (reward.type)
-        {
-            case Reward.RewardType.COIN:
-                PlayerJSON._instance.SaveBoughtCoinsFile(reward.Value);
-                break;
-            case Reward.RewardType.CRYSTAL:
-                PlayerJSON._instance.SaveBoughtCrystalsFile(reward.Value);
-                break;
-        }
+        //switch (reward.type)
+        //{
+        //    case Reward.RewardType.COIN:
+        //        //PlayerJSON._instance.SaveBoughtCoinsFile(reward.Value);
+        //        break;
+        //    case Reward.RewardType.CRYSTAL:
+        //        //PlayerJSON._instance.SaveBoughtCrystalsFile(reward.Value);
+        //        break;
+        //}
 
         lastClaimTime = DateTime.UtcNow;
 
         UpdateRewardsState();
         currentStreak = (currentStreak + 1) % 18;
 
-        if (PlayerPrefs.HasKey("Notification"))
-        {
-            if (PlayerPrefs.GetInt("Notification") == 1)
-                NotificationManager.instance.SendDailyRewardsNotification();
-        }
+        //if (PlayerPrefs.HasKey("Notification"))
+        //{
+        //    if (PlayerPrefs.GetInt("Notification") == 1)
+        //        NotificationManager.instance.SendDailyRewardsNotification();
+        //}
     }
 }
