@@ -225,7 +225,8 @@ public class LemonTree : MonoBehaviour
             collectableStage--;
             currentLemonsCount.SetActive(false);
             noneCountLimons.SetActive(true);
-            //Debug.Log(collectableStage);
+            // lemons anim
+            // set collected lemon text
             UIManager.instance.UpdateLemonsCountText(rewardPerClick);
         }
     }

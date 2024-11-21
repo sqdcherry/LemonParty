@@ -8,8 +8,9 @@ public class TreeManager : MonoBehaviour
     [SerializeField] private BuyTreePanel panel;
     [SerializeField] private List<GameObject> lemonsList;
     [SerializeField] private List<GameObject> activeTreesList;
+    [SerializeField] private Worker worker;
+    [SerializeField] private GameObject car;
 
-    private bool isReadyToCollect = true;
     private LemonTree _currentLimonTree;
     private int _currentPrice;
 
@@ -17,18 +18,24 @@ public class TreeManager : MonoBehaviour
     public static Action onBuyCar;
     public static Action onUpgrade;
 
-    private int pasiveLemons
-    {
-        get => PlayerPrefs.GetInt("SpawnRate", 0);
-        set => PlayerPrefs.SetInt("SpawnRate", value);
-    }
-
-
     private void Start()
     {
-        pasiveLemons = 1;
-        // set trees for upgrade
-        // set trees upgare level
+        PlayerPrefs.SetInt("BoughtWorkers", 0);
+        if (PlayerPrefs.HasKey("BoughtWorkers"))
+        {
+            if (PlayerPrefs.GetInt("BoughtWorkers") > 0)
+                worker.gameObject.SetActive(true);
+        }
+        else
+            PlayerPrefs.SetInt("BoughtWorkers", 0);
+        if (PlayerPrefs.HasKey("BoughtCars"))
+        {
+            if (PlayerPrefs.GetInt("BoughtCars") > 0)
+                worker.gameObject.SetActive(true);
+        }
+        else
+            PlayerPrefs.SetInt("BoughtCars", 0);
+
         for (int i = 0; i < lemonsList.Count; i++)
         {
             if (lemonsList[i].GetComponent<LemonTree>().GetCurrentStage() == 3)
@@ -36,15 +43,7 @@ public class TreeManager : MonoBehaviour
         }
     }
 
-    private IEnumerator PasiveCollect()
-    {
-        if (isReadyToCollect)
-        {
-            isReadyToCollect = false;
-            UIManager.instance.UpdateLemonsCountText(pasiveLemons);
-            yield return new WaitForSeconds(1f);
-        }
-    }
+
 
     public void Collect()
     {
@@ -96,16 +95,48 @@ public class TreeManager : MonoBehaviour
 
     public void BuyWorker()
     {
-        // if lemons amount - price <= 0
-        Debug.Log("WorkerIsBought");
-        //+ pasive rewards
+        if (PlayerPrefs.HasKey("BoughtWorkers"))
+        {
+            if (PlayerPrefs.GetInt("BoughtWorkers") < 5)
+            {
+                PlayerPrefs.SetInt("BoughtWorkers", PlayerPrefs.GetInt("BoughtWorkers") + 1);
+                worker.gameObject.SetActive(true);
+                worker.SetPasiveLemons(12);
+            }
+            else
+            {
+                Debug.Log("popup");
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("BoughtWorkers", 1);
+            worker.gameObject.SetActive(true);
+            worker.SetPasiveLemons(12);
+        }
     }
 
     public void BuyCar()
     {
-        // if lemons amount - price <= 0
-        Debug.Log("CarIsBought");
-        //+ pasive rewards
+        if (PlayerPrefs.HasKey("BoughtCars"))
+        {
+            if (PlayerPrefs.GetInt("BoughtCars") < 5)
+            {
+                PlayerPrefs.SetInt("BoughtCars", PlayerPrefs.GetInt("BoughtCars") + 1);
+                worker.gameObject.SetActive(true);
+                worker.SetPasiveLemons(12);
+            }
+            else
+            {
+                Debug.Log("popup");
+            }
+        }
+        else
+        {
+            PlayerPrefs.SetInt("BoughtCars", 1);
+            worker.gameObject.SetActive(true);
+            worker.SetPasiveLemons(12);
+        }
     }
 
     public void UpgradeTrees()

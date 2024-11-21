@@ -17,6 +17,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        //_lemonsCount = 0;
         if (instance == null)
             instance = this;
         else

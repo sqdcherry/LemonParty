@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class RewardController : MonoBehaviour
 {
     [SerializeField] private Button claimButton;
+    [SerializeField] private GameObject bonusPanel;
 
     [SerializeField] private List<RewardPref> rewardPrefabs;
 
@@ -42,7 +44,6 @@ public class RewardController : MonoBehaviour
 
     private void Start()
     {
-        //currentStreak = 0;
         InitPrefabs();
         StartCoroutine(RewardStateUpdater());
     }
@@ -85,7 +86,6 @@ public class RewardController : MonoBehaviour
     private void UpdaterewardUI()
     {
         claimButton.interactable = canClaimRewad;
-        //rewardPrefabs[currentStreak].SetInreactable(canClaimRewad);
         claimButton.transform.position = rewardPrefabs[currentStreak].transform.position;
     }
 
@@ -94,29 +94,15 @@ public class RewardController : MonoBehaviour
         if (!canClaimRewad)
             return;
 
-        Debug.Log(rewardPrefabs[currentStreak]);
-        var reward = rewardPrefabs[currentStreak];
         rewardPrefabs[currentStreak].SetCross(true, false);
 
-        //switch (reward.type)
-        //{
-        //    case Reward.RewardType.COIN:
-        //        //PlayerJSON._instance.SaveBoughtCoinsFile(reward.Value);
-        //        break;
-        //    case Reward.RewardType.CRYSTAL:
-        //        //PlayerJSON._instance.SaveBoughtCrystalsFile(reward.Value);
-        //        break;
-        //}
+        UIManager.instance.UpdateLemonsCountText(rewardPrefabs[currentStreak].GetRewardCount());
+        bonusPanel.SetActive(true);
+        bonusPanel.transform.GetChild(0).GetComponent<TMP_Text>().text = rewardPrefabs[currentStreak].GetRewardCount().ToString();
 
         lastClaimTime = DateTime.UtcNow;
 
         UpdateRewardsState();
-        currentStreak = (currentStreak + 1) % 6;
-
-        //if (PlayerPrefs.HasKey("Notification"))
-        //{
-        //    if (PlayerPrefs.GetInt("Notification") == 1)
-        //        NotificationManager.instance.SendDailyRewardsNotification();
-        //}
+        currentStreak = (currentStreak + 1) % 7;
     }
 }
