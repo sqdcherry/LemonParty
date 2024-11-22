@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -5,9 +6,12 @@ using UnityEngine.EventSystems;
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
+
     [SerializeField] private TMP_Text lemonsCountText;
     [SerializeField] private GameObject workersPanel;
     [SerializeField] private GameObject ugradesPanel;
+
+    private bool isReadyToStart;
 
     private int _lemonsCount
     {
@@ -24,6 +28,16 @@ public class UIManager : MonoBehaviour
             Destroy(this.gameObject);
 
         lemonsCountText.text = _lemonsCount.ToString();
+    }
+
+    private void Update()
+    {
+        
+    }
+
+    private IEnumerator StartMiniGame()
+    {
+        yield return new WaitForSeconds(180f);
     }
 
     public void UpdateLemonsCountText(int lemonsCount)
