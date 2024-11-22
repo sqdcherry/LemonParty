@@ -34,7 +34,7 @@ public class Car : MonoBehaviour
             isReadyToCollect = false;
             UIManager.instance.UpdateLemonsCountText(pasiveLemons);
             // lemons anim
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1);
             isReadyToCollect = true;
         }
     }
