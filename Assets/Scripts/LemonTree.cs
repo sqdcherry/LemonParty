@@ -39,15 +39,15 @@ public class LemonTree : MonoBehaviour
 
     private int upgradeState4X
     {
-        get => PlayerPrefs.GetInt($"Upgrade2X{index}", 0);
-        set => PlayerPrefs.SetInt($"Upgrade2X{index}", value);
+        get => PlayerPrefs.GetInt($"Upgrade4X{index}", 0);
+        set => PlayerPrefs.SetInt($"Upgrade4X{index}", value);
     }
 
     private void Awake()
     {
-        //PlayerPrefs.DeleteKey($"UpgradeState{index}");
+        //PlayerPrefs.SetInt($"Upgrade2X{index}", 0);
+        //PlayerPrefs.SetInt($"Upgrade4X{index}", 0);
         PlayerPrefs.SetInt($"PlotState{0}", 3);
-        upgradeState4X = 0;
         UpdateState();
         CheakState();
     }
@@ -58,7 +58,7 @@ public class LemonTree : MonoBehaviour
         {
             rewardPerClick = 1;
         }
-
+        rewardPerClick = 1;
         collectableStage = 0;
     }
 
@@ -147,9 +147,9 @@ public class LemonTree : MonoBehaviour
     {
         if (upgradeState2X == 1)
         {
-            currentLemonsCount = midCountLimons;
+            currentLemonsCount = hightCountLimons;
         }
-        if (upgradeState4X == 1)
+        else if (upgradeState4X == 1)
         {
             currentLemonsCount = hightCountLimons;
             greenHouse.SetActive(true);
@@ -175,17 +175,20 @@ public class LemonTree : MonoBehaviour
     public void SetUpgrade(int value)
     {
         upgradeState2X = 1;
-        currentLemonsCount = midCountLimons;
+        currentLemonsCount.SetActive(false);
+        currentLemonsCount = hightCountLimons;
+        currentLemonsCount.SetActive(true);
         rewardPerClick *= value;
-        UpdateState();
     }
 
     public void SetUpgradeGreenHouse(int value)
     {
         upgradeState4X = 1;
-        currentLemonsCount = hightCountLimons;
         rewardPerClick *= value;
-        UpdateState();
+        currentLemonsCount.SetActive(false);
+        currentLemonsCount = hightCountLimons;
+        currentLemonsCount.SetActive(true);
+        greenHouse.SetActive(true);
     }
 
     public void BuyPlot()
@@ -226,12 +229,18 @@ public class LemonTree : MonoBehaviour
 
     public int GetUpgrade2X()
     {
-        return upgradeState2X;
+        if (PlayerPrefs.HasKey($"Upgrade2X{index}"))
+            return upgradeState2X;
+        else
+            return 0;
     }
 
     public int GetUpgrade4X()
     {
-        return upgradeState4X;
+        if (PlayerPrefs.HasKey($"Upgrade4X{index}"))
+            return upgradeState4X;
+        else
+            return 0;
     }
 
     public void Collected()

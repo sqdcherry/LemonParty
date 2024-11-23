@@ -19,7 +19,7 @@ public class Car : MonoBehaviour
 
     private void Awake()
     {
-        //pasiveLemons = 0;
+        pasiveLemons = 0;
     }
 
     void Update()

@@ -21,7 +21,8 @@ public class TreeManager : MonoBehaviour
 
     private void Start()
     {
-        //PlayerPrefs.SetInt("BoughtWorkers", 0);
+        PlayerPrefs.SetInt("BoughtWorkers", 0);
+        PlayerPrefs.SetInt("BoughtCars", 0);
         if (PlayerPrefs.HasKey("BoughtWorkers"))
         {
             if (PlayerPrefs.GetInt("BoughtWorkers") > 0)
@@ -68,21 +69,21 @@ public class TreeManager : MonoBehaviour
             panel.gameObject.SetActive(true);
             panel.headText.text = "BUY A PLOT";
             panel.priceText.text = 100.ToString();
-            _currentPrice = 1;
+            _currentPrice = 100;
         }
         else if (stage == 1)
         {
             panel.gameObject.SetActive(true);
             panel.headText.text = "DIG UP A PLOT";
             panel.priceText.text = 300.ToString();
-            _currentPrice = 3;
+            _currentPrice = 300;
         }
         else if (stage == 2)
         {
             panel.gameObject.SetActive(true);
             panel.headText.text = "SOW A PLOT";
             panel.priceText.text = 300.ToString();
-            _currentPrice = 5;
+            _currentPrice = 500;
         }
     }
 
@@ -98,6 +99,8 @@ public class TreeManager : MonoBehaviour
             if (currentStage == 3)
                 activeTreesList.Add(_currentLimonTree.gameObject);
         }
+        else
+            PopUpManager.instance.StartPopUpAnimation("Not enoght lemons");
     }
 
     public void BuyWorker()
@@ -112,7 +115,7 @@ public class TreeManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("popup");
+                PopUpManager.instance.StartPopUpAnimation("All workers was bought");
             }
         }
         else
@@ -135,7 +138,7 @@ public class TreeManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("popup");
+                PopUpManager.instance.StartPopUpAnimation("All cars was bought");
             }
         }
         else
@@ -148,26 +151,38 @@ public class TreeManager : MonoBehaviour
 
     public void Upgrade2X()
     {
+        List<LemonTree> trees = new List<LemonTree>();
+
         foreach (GameObject element in activeTreesList)
         {
             if (element.GetComponent<LemonTree>().GetUpgrade2X() != 1)
             {
-                element.GetComponent<LemonTree>().SetUpgrade(2);
-                return;
+                trees.Add(element.GetComponent<LemonTree>());
             }
         }
+
+        if (trees.Count != 0)
+            trees[0].SetUpgrade(2);
+        else
+            PopUpManager.instance.StartPopUpAnimation("All trees was improve");
     }
 
     public void Upgrade4X()
     {
+        List<LemonTree> trees = new List<LemonTree>(); 
+
         foreach (GameObject element in activeTreesList)
         {
             if (element.GetComponent<LemonTree>().GetUpgrade4X() != 1)
             {
-                element.GetComponent<LemonTree>().SetUpgradeGreenHouse(4);
-                return;
+                trees.Add(element.GetComponent<LemonTree>());
             }
         }
+
+        if (trees.Count != 0)
+            trees[0].SetUpgradeGreenHouse(4);
+        else
+            PopUpManager.instance.StartPopUpAnimation("All trees was improve");
     }
 
     private void OnEnable()

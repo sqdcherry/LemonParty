@@ -5,6 +5,7 @@ using UnityEngine;
 public class MiniGameManager : MonoBehaviour
 {
     [SerializeField] private GameObject _lemonPrefab;
+    [SerializeField] private GameObject _button;
     [SerializeField] private GameObject _basket;
     [SerializeField] private GameObject _gameScreen;
     [SerializeField] private Transform _lemonSpawnPos;
@@ -47,6 +48,7 @@ public class MiniGameManager : MonoBehaviour
     private void OnDisable()
     {
         _basket.SetActive(false);
+        _button.SetActive(false);
         canSpawn = false;
     }
 }

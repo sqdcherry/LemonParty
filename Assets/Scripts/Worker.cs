@@ -19,7 +19,7 @@ public class Worker : MonoBehaviour
 
     private void Awake()
     {
-        //spasiveLemons = 0;
+        pasiveLemons = 0;
     }
 
     void Update()

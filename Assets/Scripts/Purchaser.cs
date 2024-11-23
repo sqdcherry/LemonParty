@@ -6,10 +6,7 @@ using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Extension;
 
 public class Purchaser : MonoBehaviour, IStoreListener
-{
-    [SerializeField] private List<CodelessIAPButton> IAPButtons;
-    [SerializeField] private GameObject _popUp;
-    [SerializeField] private AudioClip _audioClip;
+{ 
 
     private void BuyCoins(int coins)
     {
@@ -28,19 +25,8 @@ public class Purchaser : MonoBehaviour, IStoreListener
 
     public void PurchaseFailed(Product product, PurchaseFailureDescription purchaseFailureDescription)
     {
-        //StartCoroutine(PopUpNotification());
-        Debug.Log("eror");
+        PopUpManager.instance.StartPopUpAnimation("Opration was failed");
     }
-
-    //private IEnumerator PopUpNotification()
-    //{
-    //    _popUp.SetActive(true);
-    //    _popUp.GetComponent<Animator>().SetTrigger("Pop-up");
-    //    yield return new WaitForSeconds(0.6f);
-    //    AudioManager.instance.PlaySoundEffect(_audioClip);
-    //    yield return new WaitForSeconds(1.4f);
-    //    _popUp.SetActive(false);
-    //}
 
     // Some other event handlers - can be empty.
 

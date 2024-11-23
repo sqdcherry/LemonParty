@@ -9,8 +9,8 @@ public class ShopManager : MonoBehaviour
 
     private void Awake()
     {
-        PlayerPrefs.DeleteKey("Upgrade2x");
-        PlayerPrefs.DeleteKey("Upgrade4x");
+        //PlayerPrefs.DeleteKey("Upgrade2x");
+        //PlayerPrefs.DeleteKey("Upgrade4x");
         if (PlayerPrefs.HasKey("BoughtCars"))
         {
             carText.text = PlayerPrefs.GetInt("BoughtCars").ToString();
@@ -22,59 +22,58 @@ public class ShopManager : MonoBehaviour
     }
 
     public void OnBuyWorker()
-    {        
-        //if (UIManager.instance.GetLemonsCount() - 100 >= 0)
-        //{
-        TreeManager.onBuyWorker?.Invoke();
-        if (PlayerPrefs.HasKey("BoughtWorkers"))
+    {
+        if (UIManager.instance.GetLemonsCount() - 500 >= 0)
         {
-            int value = PlayerPrefs.GetInt("BoughtWorkers");
-            if (value < 6)
-                workerText.text = value.ToString();
+            TreeManager.onBuyWorker?.Invoke();
+            if (PlayerPrefs.HasKey("BoughtWorkers"))
+            {
+                int value = PlayerPrefs.GetInt("BoughtWorkers");
+                if (value < 6)
+                    workerText.text = value.ToString();
+            }
+            else
+                workerText.text = 1.ToString();
         }
         else
-            workerText.text = 1.ToString();
-        //}
-        //else pop or uninteractable buttons
+            PopUpManager.instance.StartPopUpAnimation("Not enoght lemons");
     }
 
     public void OnBuyCar()
     {
-        //if (UIManager.instance.GetLemonsCount() - 100 >= 0)
-        //{
-            TreeManager.onBuyCar?.Invoke();
-        if (PlayerPrefs.HasKey("BoughtCars"))
+        if (UIManager.instance.GetLemonsCount() - 5000 >= 0)
         {
-            int value = PlayerPrefs.GetInt("BoughtCars");
-            if (value < 6)
-                carText.text = value.ToString();
+            TreeManager.onBuyCar?.Invoke();
+            if (PlayerPrefs.HasKey("BoughtCars"))
+            {
+                int value = PlayerPrefs.GetInt("BoughtCars");
+                if (value < 6)
+                    carText.text = value.ToString();
+            }
+            else
+                carText.text = 1.ToString();
         }
         else
-            carText.text = 1.ToString();
-        //}
-        //else pop or uninteractable buttons
+            PopUpManager.instance.StartPopUpAnimation("Not enoght lemons");
     }
 
     public void OnBuyUpgarade2X()
     {
-        if (!PlayerPrefs.HasKey("Upgrade2x"))
+        if (UIManager.instance.GetLemonsCount() - 500 >= 0)
         {
-            Debug.Log("!");
-            PlayerPrefs.SetInt("Upgrade2x", PlayerPrefs.GetInt("Upgrade2x") + 1);
             TreeManager.onUpgrade2X?.Invoke();
         }
         else
-            Debug.Log("popup");
+            PopUpManager.instance.StartPopUpAnimation("Not enoght lemons");
     }
 
     public void OnBuyUpgarade4X()
     {
-        if (!PlayerPrefs.HasKey("Upgrade4x"))
+        if (UIManager.instance.GetLemonsCount() - 2500 >= 0)
         {
-            PlayerPrefs.SetInt("Upgrade4x", PlayerPrefs.GetInt("Upgrade4x") + 1);
             TreeManager.onUpgrade4X?.Invoke();
         }
         else
-            Debug.Log("popup");
+            PopUpManager.instance.StartPopUpAnimation("Not enoght lemons");
     }
 }

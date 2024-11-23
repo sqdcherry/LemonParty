@@ -10,8 +10,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TMP_Text lemonsCountText;
     [SerializeField] private GameObject workersPanel;
     [SerializeField] private GameObject ugradesPanel;
+    [SerializeField] private GameObject minigameButton;
+    [SerializeField] private GameObject mainPanel;
 
-    private bool isReadyToStart;
+    private bool isReadyToStart = true;
 
     private int _lemonsCount
     {
@@ -21,7 +23,6 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        //_lemonsCount = 0;
         if (instance == null)
             instance = this;
         else
@@ -32,12 +33,18 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        
+        StartCoroutine(StartMiniGame());
     }
 
     private IEnumerator StartMiniGame()
     {
-        yield return new WaitForSeconds(180f);
+        if (isReadyToStart)
+        {
+            isReadyToStart = false;
+            yield return new WaitForSeconds(180);
+            minigameButton.SetActive(true);
+            isReadyToStart = true;
+        }
     }
 
     public void UpdateLemonsCountText(int lemonsCount)
@@ -59,6 +66,12 @@ public class UIManager : MonoBehaviour
     public void ExitPanel(GameObject panel)
     {
         panel.SetActive(false);
+    }
+
+    public void OpenMiniGamePanel(GameObject panel)
+    {
+        panel.SetActive(true);
+        mainPanel.SetActive(false);
     }
 
     public void SwapPanels()

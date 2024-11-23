@@ -13,7 +13,7 @@ public class RewardController : MonoBehaviour
     [SerializeField] private List<RewardPref> rewardPrefabs;
 
     private bool canClaimRewad;
-    private float claimCooldown = 24f / 24 / 60 / 6 / 6;
+    private float claimCooldown = 24f;
     private float claimDeadTime = 48f;
 
     private int currentStreak
