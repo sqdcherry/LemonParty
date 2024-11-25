@@ -17,11 +17,6 @@ public class Worker : MonoBehaviour
         pasiveLemons += value;
     }
 
-    private void Awake()
-    {
-        pasiveLemons = 0;
-    }
-
     void Update()
     {
         StartCoroutine(PasiveCollect());
@@ -34,7 +29,7 @@ public class Worker : MonoBehaviour
             isReadyToCollect = false;
             UIManager.instance.UpdateLemonsCountText(pasiveLemons);
             // lemons anim
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(60f);
             isReadyToCollect = true;
         }
     }

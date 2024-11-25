@@ -1,41 +1,46 @@
-//using System.Collections;
-//using System.Collections.Generic;
-//using TMPro;
-//using UnityEngine;
-//using Dan.Main;
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using Dan.Main;
 
-//public class Leaderboard : MonoBehaviour
-//{
-//    [SerializeField] private TMP_Text[] _entryTextObjects;
-//    [SerializeField] private TMP_InputField _userName;
+public class Leaderboard : MonoBehaviour
+{
+    public static Leaderboard instance;
+    [SerializeField] private TMP_Text[] _entryTextObjects;
+    [SerializeField] private string _userName;
 
-//    //[SerializeField] private ExampleGame _exampleGame;
-//    //private int Score => _exampleGame.Score;
+    private int Score;
 
-//    private void Start()
-//    {
-//        LoadEntries();
-//    }
+    private void Start()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this.gameObject);
 
-//    private void LoadEntries()
-//    {
-//        Leaderboards.LeaderBoard.GetEntries(entries =>
-//        {
-//            foreach (var t in _entryTextObjects)
-//                t.text = "";
+        LoadEntries();
+    }
 
-//            var lengt = Mathf.Min(_entryTextObjects.Length, entries.Length);
-//            for (int i = 0; i < lengt; i++)
-//                _entryTextObjects[i].text = $"{entries[i].Rank}. {entries[i].Username} - {entries[i].Score}";
-//        });
-//    }
+    public void LoadEntries()
+    {
+        Leaderboards.LeaderBoard.GetEntries(entries =>
+        {
+            foreach (var t in _entryTextObjects)
+                t.text = "";
 
-//    private void UploadEntries()
-//    {
-//        Leaderboards.LeaderBoard.UploadNewEntry(_userName.text, Score, isSuccessful =>
-//        {
-//            if (isSuccessful)
-//                LoadEntries();
-//        });
-//    }
-//}
+            var lengt = Mathf.Min(_entryTextObjects.Length, entries.Length);
+            for (int i = 0; i < lengt; i++)
+                _entryTextObjects[i].text = $"{entries[i].Rank}. {entries[i].Username} - {entries[i].Score}";
+        });
+    }
+
+    public void UploadEntries(string userName, int score)
+    {
+        Leaderboards.LeaderBoard.UploadNewEntry(userName, score, isSuccessful =>
+        {
+            if (isSuccessful)
+                LoadEntries();
+        });
+    }
+}

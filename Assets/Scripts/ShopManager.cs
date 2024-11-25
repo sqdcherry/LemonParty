@@ -9,8 +9,7 @@ public class ShopManager : MonoBehaviour
 
     private void Awake()
     {
-        //PlayerPrefs.DeleteKey("Upgrade2x");
-        //PlayerPrefs.DeleteKey("Upgrade4x");
+        PlayerPrefs.DeleteAll();
         if (PlayerPrefs.HasKey("BoughtCars"))
         {
             carText.text = PlayerPrefs.GetInt("BoughtCars").ToString();

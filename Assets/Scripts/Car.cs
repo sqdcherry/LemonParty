@@ -17,11 +17,6 @@ public class Car : MonoBehaviour
         pasiveLemons += value;
     }
 
-    private void Awake()
-    {
-        pasiveLemons = 0;
-    }
-
     void Update()
     {
         StartCoroutine(PasiveCollect());
@@ -34,7 +29,7 @@ public class Car : MonoBehaviour
             isReadyToCollect = false;
             UIManager.instance.UpdateLemonsCountText(pasiveLemons);
             // lemons anim
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(60);
             isReadyToCollect = true;
         }
     }

@@ -8,10 +8,12 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     [SerializeField] private TMP_Text lemonsCountText;
+    [SerializeField] private TMP_InputField nameInputField;
     [SerializeField] private GameObject workersPanel;
     [SerializeField] private GameObject ugradesPanel;
     [SerializeField] private GameObject minigameButton;
     [SerializeField] private GameObject mainPanel;
+    [SerializeField] private GameObject startPanel;
 
     private bool isReadyToStart = true;
 
@@ -27,6 +29,11 @@ public class UIManager : MonoBehaviour
             instance = this;
         else
             Destroy(this.gameObject);
+
+        if (PlayerPrefs.HasKey("FirstLoad"))
+            startPanel.SetActive(false);
+        else
+            startPanel.SetActive(true);
 
         lemonsCountText.text = _lemonsCount.ToString();
     }
@@ -61,6 +68,7 @@ public class UIManager : MonoBehaviour
     public void OpenPanel(GameObject panel)
     {
         panel.SetActive(true);
+        Leaderboard.instance.UploadEntries(PlayerPrefs.GetString("Name"), _lemonsCount);
     }
 
     public void ExitPanel(GameObject panel)
@@ -85,6 +93,16 @@ public class UIManager : MonoBehaviour
         {
             workersPanel.SetActive(true);
             ugradesPanel.SetActive(false);
+        }
+    }
+
+    public void OnConfirmName()
+    {
+        if (nameInputField.text != "")
+        {
+            PlayerPrefs.SetString("Name", nameInputField.text);
+            PlayerPrefs.SetInt("FirstLoad", 1);
+            startPanel.SetActive(false);
         }
     }
 }

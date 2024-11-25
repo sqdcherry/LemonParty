@@ -21,8 +21,6 @@ public class TreeManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.SetInt("BoughtWorkers", 0);
-        PlayerPrefs.SetInt("BoughtCars", 0);
         if (PlayerPrefs.HasKey("BoughtWorkers"))
         {
             if (PlayerPrefs.GetInt("BoughtWorkers") > 0)
@@ -111,7 +109,7 @@ public class TreeManager : MonoBehaviour
             {
                 PlayerPrefs.SetInt("BoughtWorkers", PlayerPrefs.GetInt("BoughtWorkers") + 1);
                 worker.gameObject.SetActive(true);
-                worker.SetPasiveLemons(12);
+                worker.SetPasiveLemons(150);
             }
             else
             {
@@ -122,7 +120,7 @@ public class TreeManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("BoughtWorkers", 1);
             worker.gameObject.SetActive(true);
-            worker.SetPasiveLemons(12);
+            worker.SetPasiveLemons(150);
         }
     }
 
@@ -134,7 +132,7 @@ public class TreeManager : MonoBehaviour
             {
                 PlayerPrefs.SetInt("BoughtCars", PlayerPrefs.GetInt("BoughtCars") + 1);
                 car.gameObject.SetActive(true);
-                car.SetPasiveLemons(100);
+                car.SetPasiveLemons(1500);
             }
             else
             {
@@ -145,7 +143,7 @@ public class TreeManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("BoughtCars", 1);
             car.gameObject.SetActive(true);
-            car.SetPasiveLemons(100);
+            car.SetPasiveLemons(1500);
         }
     }
 

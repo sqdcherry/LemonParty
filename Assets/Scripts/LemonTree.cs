@@ -45,8 +45,6 @@ public class LemonTree : MonoBehaviour
 
     private void Awake()
     {
-        //PlayerPrefs.SetInt($"Upgrade2X{index}", 0);
-        //PlayerPrefs.SetInt($"Upgrade4X{index}", 0);
         PlayerPrefs.SetInt($"PlotState{0}", 3);
         UpdateState();
         CheakState();
@@ -56,9 +54,9 @@ public class LemonTree : MonoBehaviour
     {
         if (rewardPerClick == 0)
         {
-            rewardPerClick = 1;
+            rewardPerClick = 10;
         }
-        rewardPerClick = 1;
+
         collectableStage = 0;
     }
 
@@ -81,7 +79,7 @@ public class LemonTree : MonoBehaviour
             isReadyToCollect = false;
             currentLemonsCount.SetActive(false);
             noneCountLimons.SetActive(true);
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1f);
             currentLemonsCount.SetActive(true);
             noneCountLimons.SetActive(false);
             isReadyToCollect = true;
@@ -248,10 +246,6 @@ public class LemonTree : MonoBehaviour
         if (collectableStage > 0)
         {
             collectableStage--;
-            //currentLemonsCount.SetActive(false);
-            //noneCountLimons.SetActive(true);
-            // lemons anim
-            // set collected lemon text
             UIManager.instance.UpdateLemonsCountText(rewardPerClick);
         }
     }
