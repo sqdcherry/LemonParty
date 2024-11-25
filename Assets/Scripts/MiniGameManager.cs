@@ -8,6 +8,9 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField] private GameObject _button;
     [SerializeField] private GameObject _basket;
     [SerializeField] private GameObject _gameScreen;
+    [SerializeField] private GameObject _lemonCountPanel;
+    [SerializeField] private GameObject _shop;
+    [SerializeField] private GameObject _plots;
     [SerializeField] private Transform _lemonSpawnPos;
 
     private bool isReadyToSpawn = true;
@@ -36,12 +39,19 @@ public class MiniGameManager : MonoBehaviour
     public void SetActive()
     {
         _gameScreen.SetActive(true);
+        _lemonCountPanel.SetActive(true);
+        _shop.SetActive(true);
+        _plots.SetActive(true);
         gameObject.SetActive(false);
     }
 
     private void OnEnable()
     {
         _basket.SetActive(true);
+        _gameScreen.SetActive(false);
+        _lemonCountPanel.SetActive(false);
+        _shop.SetActive(false);
+        _plots.SetActive(false);
         canSpawn = true;
     }
 

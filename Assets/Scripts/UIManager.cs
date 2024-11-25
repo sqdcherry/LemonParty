@@ -48,7 +48,7 @@ public class UIManager : MonoBehaviour
         if (isReadyToStart)
         {
             isReadyToStart = false;
-            yield return new WaitForSeconds(180);
+            yield return new WaitForSeconds(15);
             minigameButton.SetActive(true);
             isReadyToStart = true;
         }
