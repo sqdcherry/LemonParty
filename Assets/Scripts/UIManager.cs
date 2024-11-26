@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.DeleteAll();
         if (instance == null)
             instance = this;
         else
@@ -47,7 +48,7 @@ public class UIManager : MonoBehaviour
         if (isReadyToStart)
         {
             isReadyToStart = false;
-            yield return new WaitForSeconds(30);
+            yield return new WaitForSeconds(60);
             minigameButton.SetActive(true);
             isReadyToStart = true;
         }
