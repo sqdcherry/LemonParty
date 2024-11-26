@@ -24,6 +24,7 @@ public class ShopManager : MonoBehaviour
         if (UIManager.instance.GetLemonsCount() - 500 >= 0)
         {
             TreeManager.onBuyWorker?.Invoke();
+            UIManager.instance.UpdateLemonsCountText(-500);
             if (PlayerPrefs.HasKey("BoughtWorkers"))
             {
                 int value = PlayerPrefs.GetInt("BoughtWorkers");
@@ -42,6 +43,7 @@ public class ShopManager : MonoBehaviour
         if (UIManager.instance.GetLemonsCount() - 5000 >= 0)
         {
             TreeManager.onBuyCar?.Invoke();
+            UIManager.instance.UpdateLemonsCountText(-5000);
             if (PlayerPrefs.HasKey("BoughtCars"))
             {
                 int value = PlayerPrefs.GetInt("BoughtCars");
@@ -59,6 +61,7 @@ public class ShopManager : MonoBehaviour
     {
         if (UIManager.instance.GetLemonsCount() - 500 >= 0)
         {
+            UIManager.instance.UpdateLemonsCountText(-500);
             TreeManager.onUpgrade2X?.Invoke();
         }
         else
@@ -69,6 +72,7 @@ public class ShopManager : MonoBehaviour
     {
         if (UIManager.instance.GetLemonsCount() - 2500 >= 0)
         {
+            UIManager.instance.UpdateLemonsCountText(-2500);
             TreeManager.onUpgrade4X?.Invoke();
         }
         else

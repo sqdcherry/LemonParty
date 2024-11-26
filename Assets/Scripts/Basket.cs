@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class Basket : MonoBehaviour
 {
     private PlayerInputs inputs;
+    [SerializeField] private AudioClip _collectSound;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class Basket : MonoBehaviour
         if (collision.CompareTag("Lemon"))
         {
             UIManager.instance.UpdateLemonsCountText(50);
+            AudioManager.instance.PlaySoundEffect(_collectSound);
             Destroy(collision.gameObject);
         }
     }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -80,7 +79,7 @@ public class TreeManager : MonoBehaviour
         {
             panel.gameObject.SetActive(true);
             panel.headText.text = "SOW A PLOT";
-            panel.priceText.text = 300.ToString();
+            panel.priceText.text = 500.ToString();
             _currentPrice = 500;
         }
     }

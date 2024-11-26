@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ public class MiniGameManager : MonoBehaviour
     [SerializeField] private GameObject _plots;
     [SerializeField] private Transform _lemonSpawnPos;
 
-    private bool isReadyToSpawn = true;
+    private bool isReadyToSpawn;
     private bool canSpawn;
 
     private void Update()
@@ -47,6 +46,7 @@ public class MiniGameManager : MonoBehaviour
 
     private void OnEnable()
     {
+        isReadyToSpawn = true;
         _basket.SetActive(true);
         _gameScreen.SetActive(false);
         _lemonCountPanel.SetActive(false);

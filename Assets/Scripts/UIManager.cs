@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
@@ -48,7 +47,7 @@ public class UIManager : MonoBehaviour
         if (isReadyToStart)
         {
             isReadyToStart = false;
-            yield return new WaitForSeconds(15);
+            yield return new WaitForSeconds(30);
             minigameButton.SetActive(true);
             isReadyToStart = true;
         }
@@ -68,7 +67,7 @@ public class UIManager : MonoBehaviour
     public void OpenPanel(GameObject panel)
     {
         panel.SetActive(true);
-        Leaderboard.instance.UploadEntries(PlayerPrefs.GetString("Name"), _lemonsCount);
+        //Leaderboard.instance.UploadEntries(PlayerPrefs.GetString("Name"), _lemonsCount);
     }
 
     public void ExitPanel(GameObject panel)

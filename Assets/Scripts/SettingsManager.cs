@@ -1,9 +1,5 @@
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
