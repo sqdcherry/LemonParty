@@ -24,12 +24,13 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
         if (instance == null)
             instance = this;
         else
             Destroy(this.gameObject);
 
+        _lemonsCount = 0;
         if (PlayerPrefs.HasKey("FirstLoad"))
             startPanel.SetActive(false);
         else

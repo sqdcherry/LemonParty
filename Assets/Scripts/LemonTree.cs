@@ -23,7 +23,6 @@ public class LemonTree : MonoBehaviour
     private int collectableStage;
     private bool isReadyToSpawn = true;
     private bool isReadyToCollect;
-    private int i;
 
     private int rewardPerClick
     {
