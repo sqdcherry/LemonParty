@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class TreeManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class TreeManager : MonoBehaviour
     [SerializeField] private List<GameObject> activeTreesList;
     [SerializeField] private Worker worker;
     [SerializeField] private Car car;
+    [SerializeField] private GameObject buyPlotPanel;
 
     private LemonTree _currentLimonTree;
     private int _currentPrice;
@@ -58,6 +60,7 @@ public class TreeManager : MonoBehaviour
 
     public void BuyPlotPanel(LemonTree currentLimonTree)
     {
+        panel.transform.GetChild(0).GetComponent<RectTransform>().DOAnchorPosY(0, 0.5f);
         int stage = currentLimonTree.GetCurrentStage();
         _currentLimonTree = currentLimonTree;
 

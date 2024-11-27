@@ -51,7 +51,12 @@ public class RewardController : MonoBehaviour
     private void InitPrefabs()
     {
         for (int i = 0; i < currentStreak; i++)
-            rewardPrefabs[i].SetCross(true, false);
+            rewardPrefabs[i].SetCross();
+
+        for (int i = 0; i < rewardPrefabs.Count; i++)
+        {
+            rewardPrefabs[i].SetLock(true);
+        }
     }
 
     private IEnumerator RewardStateUpdater()
@@ -77,7 +82,9 @@ public class RewardController : MonoBehaviour
                 currentStreak = 0;
             }
             else if (timeSpan.TotalHours < claimCooldown)
+            {
                 canClaimRewad = false;
+            }
         }
 
         UpdaterewardUI();
@@ -86,6 +93,7 @@ public class RewardController : MonoBehaviour
     private void UpdaterewardUI()
     {
         claimButton.interactable = canClaimRewad;
+        rewardPrefabs[currentStreak].SetLock(!canClaimRewad);
         claimButton.transform.position = rewardPrefabs[currentStreak].transform.position;
     }
 
@@ -94,7 +102,8 @@ public class RewardController : MonoBehaviour
         if (!canClaimRewad)
             return;
 
-        rewardPrefabs[currentStreak].SetCross(true, false);
+        rewardPrefabs[currentStreak].SetCross();
+        rewardPrefabs[currentStreak].SetLock(false);
 
         UIManager.instance.UpdateLemonsCountText(rewardPrefabs[currentStreak].GetRewardCount());
         bonusPanel.SetActive(true);

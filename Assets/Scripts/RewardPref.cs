@@ -3,6 +3,7 @@
 public class RewardPref : MonoBehaviour
 { 
     [SerializeField] private GameObject crossSprite;
+    [SerializeField] private GameObject lockSprite;
     [SerializeField] private int rewardCount;
     
     public int GetRewardCount()
@@ -10,8 +11,13 @@ public class RewardPref : MonoBehaviour
         return rewardCount;
     }
 
-    public void SetCross(bool crossActive, bool buttonActive)
+    public void SetCross()
     {
         crossSprite.SetActive(true);
+    }
+
+    public void SetLock(bool value)
+    {
+        lockSprite.SetActive(value);
     }
 }

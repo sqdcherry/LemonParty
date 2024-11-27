@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,9 @@ public class Basket : MonoBehaviour
 {
     private PlayerInputs inputs;
     [SerializeField] private AudioClip _collectSound;
+    [SerializeField] private TMP_Text _lemonsCountText;
+
+    private int collectedLemons;
 
     private void Awake()
     {
@@ -23,7 +27,8 @@ public class Basket : MonoBehaviour
     {
         if (collision.CompareTag("Lemon"))
         {
-            UIManager.instance.UpdateLemonsCountText(50);
+            collectedLemons += 50;
+            _lemonsCountText.text = collectedLemons.ToString();
             AudioManager.instance.PlaySoundEffect(_collectSound);
             Destroy(collision.gameObject);
         }
@@ -39,7 +44,7 @@ public class Basket : MonoBehaviour
     private void OnDisable()
     {
         inputs.Disable();
-
+        UIManager.instance.UpdateLemonsCountText(collectedLemons);
         inputs.Phone.Moving.performed -= Moving;
     }
 }
