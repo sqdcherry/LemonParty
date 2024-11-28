@@ -26,9 +26,9 @@ public class Worker : MonoBehaviour
         if (isReadyToCollect)
         {
             isReadyToCollect = false;
+            yield return new WaitForSeconds(60f);
             UIManager.instance.UpdateLemonsCountText(pasiveLemons);
             // lemons anim
-            yield return new WaitForSeconds(60f);
             isReadyToCollect = true;
         }
     }

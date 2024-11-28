@@ -40,11 +40,12 @@ public class UIManager : MonoBehaviour
 
         DateTime lastSaveTime = DateTimeController.GetDateTime("LastSaveTime", DateTime.UtcNow);
         TimeSpan timePassed = DateTime.UtcNow - lastSaveTime;
-        int minutesPassed = (int)timePassed.TotalMinutes;
+
+        double minutesPassed = Math.Floor(timePassed.TotalMinutes);
 
         int pasiveLemons = 0;
-        pasiveLemons += minutesPassed * PlayerPrefs.GetInt("workerPasiveLemons");
-        pasiveLemons += minutesPassed * PlayerPrefs.GetInt("carPasiveLemons");
+        pasiveLemons += (int)minutesPassed * PlayerPrefs.GetInt("workerPasiveLemons");
+        pasiveLemons += (int)minutesPassed * PlayerPrefs.GetInt("carPasiveLemons");
         if (pasiveLemons > 15000)
         {
             _lemonsCount = 15000;
