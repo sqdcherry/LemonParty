@@ -36,6 +36,8 @@ public class Basket : MonoBehaviour
 
     private void OnEnable()
     {
+        _lemonsCountText.text = "0";
+
         inputs.Enable();
 
         inputs.Phone.Moving.performed += Moving;
