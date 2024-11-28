@@ -18,7 +18,6 @@ public class Worker : MonoBehaviour
 
     void Update()
     {
-        pasiveLemons = 0;
         StartCoroutine(PasiveCollect());
     }
 
