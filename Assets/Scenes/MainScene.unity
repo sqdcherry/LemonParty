@@ -1286,7 +1286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &155864099
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8149,7 +8149,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628175096}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.264, z: 0}
+  m_LocalPosition: {x: -0.095, y: -0.308, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8665,7 +8665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &695889963
 Transform:
   m_ObjectHideFlags: 0
@@ -11155,7 +11155,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887498656}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.264, z: 0}
+  m_LocalPosition: {x: 0.099, y: -0.304, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13079,7 +13079,7 @@ MonoBehaviour:
   _lemonCountPanel: {fileID: 1946162912}
   _shop: {fileID: 1290843300}
   _plots: {fileID: 481755970}
-  _lemonSpawnPos: {fileID: 0}
+  _lemonSpawnPos: {fileID: 1901970858}
 --- !u!111 &1019736531
 Animation:
   m_ObjectHideFlags: 0
@@ -14672,7 +14672,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1177986614
 Transform:
   m_ObjectHideFlags: 0
@@ -15690,18 +15690,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1172169411}
-        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: OpenPanel
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1019736528}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1151197449}
         m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
         m_MethodName: PlaySoundEffect
@@ -15709,6 +15697,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 8300000, guid: 523924e8918aa8e47a8e695ff5b7a463, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1172169411}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: OpenMiniGamePanel
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1019736528}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -17682,7 +17682,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1454975073}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.033, y: -0.281, z: 0}
+  m_LocalPosition: {x: -0.007, y: -0.255, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19722,7 +19722,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1601236828}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.264, z: 0}
+  m_LocalPosition: {x: -0.128, y: -0.308, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -27905,6 +27905,14 @@ PrefabInstance:
     - target: {fileID: 2496743557798447589, guid: 7cdc68f9da198d0419ffb0fb5831afb1, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227670216621774968, guid: 7cdc68f9da198d0419ffb0fb5831afb1, type: 3}
+      propertyPath: m_SortingLayer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227670216621774968, guid: 7cdc68f9da198d0419ffb0fb5831afb1, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2059359921
       objectReference: {fileID: 0}
     - target: {fileID: 6355266058593946311, guid: 7cdc68f9da198d0419ffb0fb5831afb1, type: 3}
       propertyPath: _collectSound

@@ -60,7 +60,6 @@ public class TreeManager : MonoBehaviour
 
     public void BuyPlotPanel(LemonTree currentLimonTree)
     {
-        panel.transform.GetChild(0).GetComponent<RectTransform>().DOAnchorPosY(0, 0.5f);
         int stage = currentLimonTree.GetCurrentStage();
         _currentLimonTree = currentLimonTree;
 
@@ -85,6 +84,8 @@ public class TreeManager : MonoBehaviour
             panel.priceText.text = 500.ToString();
             _currentPrice = 500;
         }
+
+        panel.transform.GetChild(0).GetComponent<RectTransform>().DOAnchorPosY(0, 0.5f);
     }
 
     public void BuyPlot()

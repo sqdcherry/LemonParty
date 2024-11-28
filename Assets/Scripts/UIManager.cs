@@ -48,9 +48,10 @@ public class UIManager : MonoBehaviour
         if (pasiveLemons > 15000)
         {
             _lemonsCount = 15000;
+            _lemonsCount += pasiveLemons;
         }
-
-        _lemonsCount = pasiveLemons;
+        else
+            _lemonsCount += pasiveLemons;
 
         lemonsCountText.text = _lemonsCount.ToString();
     }
@@ -65,7 +66,7 @@ public class UIManager : MonoBehaviour
         if (isReadyToStart)
         {
             isReadyToStart = false;
-            yield return new WaitForSeconds(60);
+            yield return new WaitForSeconds(15);
             minigameButton.SetActive(true);
             isReadyToStart = true;
         }
@@ -80,6 +81,11 @@ public class UIManager : MonoBehaviour
     public int GetLemonsCount()
     {
         return _lemonsCount;
+    }
+    
+    public void OpenMinigamwPanel(GameObject panel)
+    {
+        panel.SetActive(true);
     }
 
     public void OpenPanel(GameObject panel)
@@ -127,5 +133,10 @@ public class UIManager : MonoBehaviour
             PlayerPrefs.SetInt("FirstLoad", 1);
             startPanel.SetActive(false);
         }
+    }
+
+    private void OnApplicationQuit()
+    {
+        DateTimeController.SetDateTime("LastSaveTime", DateTime.UtcNow);
     }
 }

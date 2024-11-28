@@ -34,8 +34,6 @@ public class ShopManager : MonoBehaviour
             }
             else
                 workerText.text = 1.ToString();
-
-            DateTimeController.SetDateTime("LastSaveTime", DateTime.UtcNow);
         }
         else
             PopUpManager.instance.StartPopUpAnimation("Not enoght lemons");
@@ -55,8 +53,6 @@ public class ShopManager : MonoBehaviour
             }
             else
                 carText.text = 1.ToString();
-
-            DateTimeController.SetDateTime("LastSaveTime", DateTime.UtcNow);
         }
         else
             PopUpManager.instance.StartPopUpAnimation("Not enoght lemons");

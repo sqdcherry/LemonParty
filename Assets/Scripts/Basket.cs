@@ -36,7 +36,8 @@ public class Basket : MonoBehaviour
 
     private void OnEnable()
     {
-        _lemonsCountText.text = "0";
+        collectedLemons = 0;
+        _lemonsCountText.text = collectedLemons.ToString();
 
         inputs.Enable();
 
