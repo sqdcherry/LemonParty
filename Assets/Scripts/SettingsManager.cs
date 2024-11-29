@@ -45,7 +45,7 @@ public class SettingsManager : MonoBehaviour
     
     public void OnRate()
     {
-        Application.OpenURL("google.com");
+        Application.OpenURL("https://apps.apple.com/gb/app/id6738837340");
     }
 
     public void OnBugReport()
