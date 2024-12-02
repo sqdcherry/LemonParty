@@ -163,7 +163,10 @@ public class TreeManager : MonoBehaviour
         }
 
         if (trees.Count != 0)
+        {
+            UIManager.instance.UpdateLemonsCountText(-500);
             trees[0].SetUpgrade(2);
+        }
         else
             PopUpManager.instance.StartPopUpAnimation("All trees was improve");
     }
@@ -181,7 +184,10 @@ public class TreeManager : MonoBehaviour
         }
 
         if (trees.Count != 0)
+        {
+            UIManager.instance.UpdateLemonsCountText(-2500);
             trees[0].SetUpgradeGreenHouse(4);
+        }
         else
             PopUpManager.instance.StartPopUpAnimation("All trees was improve");
     }

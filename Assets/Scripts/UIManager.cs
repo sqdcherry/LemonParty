@@ -96,11 +96,17 @@ public class UIManager : MonoBehaviour
         panel.transform.GetChild(0).GetComponent<RectTransform>().DOAnchorPosY(midlePosPanel, 0.5f);
     }
 
+    public void ClosePanel(GameObject panel)
+    {
+        panel.SetActive(false);
+    }
+
     public async void ExitPanel(GameObject panel)
     {
         await PausePanelOutro(panel);
         panel.SetActive(false);
     }
+
     async Task PausePanelOutro(GameObject panel)
     {
         await panel.transform.GetChild(0).GetComponent<RectTransform>().DOAnchorPosY(upPosPanel, 0.5f).AsyncWaitForCompletion();

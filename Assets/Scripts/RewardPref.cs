@@ -14,6 +14,7 @@ public class RewardPref : MonoBehaviour
     public void SetCross()
     {
         crossSprite.SetActive(true);
+        lockSprite.SetActive(false);
     }
 
     public void SetLock(bool value)

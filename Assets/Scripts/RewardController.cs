@@ -53,7 +53,7 @@ public class RewardController : MonoBehaviour
         for (int i = 0; i < currentStreak; i++)
             rewardPrefabs[i].SetCross();
 
-        for (int i = 0; i < rewardPrefabs.Count; i++)
+        for (int i = currentStreak; i < rewardPrefabs.Count; i++)
         {
             rewardPrefabs[i].SetLock(true);
         }
@@ -93,7 +93,8 @@ public class RewardController : MonoBehaviour
     private void UpdaterewardUI()
     {
         claimButton.interactable = canClaimRewad;
-        rewardPrefabs[currentStreak].SetLock(!canClaimRewad);
+        if (canClaimRewad)
+            rewardPrefabs[currentStreak].SetLock(!canClaimRewad);
         claimButton.transform.position = rewardPrefabs[currentStreak].transform.position;
     }
 

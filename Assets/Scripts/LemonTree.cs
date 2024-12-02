@@ -142,11 +142,16 @@ public class LemonTree : MonoBehaviour
 
     private void UpdateState()
     {
-        if (upgradeState2X == 1)
+        if (upgradeState2X == 1 && upgradeState4X == 0)
         {
             currentLemonsCount = hightCountLimons;
         }
-        else if (upgradeState4X == 1)
+        else if (upgradeState4X == 1 && upgradeState2X == 0)
+        {
+            currentLemonsCount = hightCountLimons;
+            greenHouse.SetActive(true);
+        }
+        else if (upgradeState4X == 1 && upgradeState2X == 1)
         {
             currentLemonsCount = hightCountLimons;
             greenHouse.SetActive(true);
@@ -172,10 +177,10 @@ public class LemonTree : MonoBehaviour
     public void SetUpgrade(int value)
     {
         upgradeState2X = 1;
+        rewardPerClick *= value;
         currentLemonsCount.SetActive(false);
         currentLemonsCount = hightCountLimons;
         currentLemonsCount.SetActive(true);
-        rewardPerClick *= value;
     }
 
     public void SetUpgradeGreenHouse(int value)

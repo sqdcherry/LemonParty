@@ -62,7 +62,6 @@ public class ShopManager : MonoBehaviour
     {
         if (UIManager.instance.GetLemonsCount() - 500 >= 0)
         {
-            UIManager.instance.UpdateLemonsCountText(-500);
             TreeManager.onUpgrade2X?.Invoke();
         }
         else
@@ -73,7 +72,6 @@ public class ShopManager : MonoBehaviour
     {
         if (UIManager.instance.GetLemonsCount() - 2500 >= 0)
         {
-            UIManager.instance.UpdateLemonsCountText(-2500);
             TreeManager.onUpgrade4X?.Invoke();
         }
         else

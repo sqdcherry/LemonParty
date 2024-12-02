@@ -510,6 +510,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 489081098}
+  - {fileID: 1636428947}
   m_Father: {fileID: 508740316}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2619,7 +2620,7 @@ SpriteRenderer:
   m_SortingLayerID: 1486866505
   m_SortingLayer: 2
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: ec6ce40afac27bd4cb3c6a1c2c9e1598, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 939f2aa8ba9caba4e9464725cc9d4284, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2875,19 +2876,7 @@ MonoBehaviour:
       m_Calls: []
   onPurchaseComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1172169415}
-        m_TargetAssemblyTypeName: Purchaser, Assembly-CSharp
-        m_MethodName: PurchaseFirstProduct
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onPurchaseFailed:
     m_PersistentCalls:
       m_Calls:
@@ -6259,7 +6248,6 @@ RectTransform:
   - {fileID: 865477918}
   - {fileID: 1608740009}
   - {fileID: 966053300}
-  - {fileID: 1636428947}
   m_Father: {fileID: 47735116}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6337,7 +6325,7 @@ Transform:
   - {fileID: 226082960}
   - {fileID: 1501117839}
   m_Father: {fileID: 1177986614}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &505926565
 GameObject:
@@ -7033,7 +7021,7 @@ SpriteRenderer:
   m_SortingLayerID: 1486866505
   m_SortingLayer: 2
   m_SortingOrder: 12
-  m_Sprite: {fileID: 21300000, guid: ec6ce40afac27bd4cb3c6a1c2c9e1598, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 939f2aa8ba9caba4e9464725cc9d4284, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8732,7 +8720,7 @@ SpriteRenderer:
   m_SortingLayerID: 1486866505
   m_SortingLayer: 2
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: ec6ce40afac27bd4cb3c6a1c2c9e1598, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 939f2aa8ba9caba4e9464725cc9d4284, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -8954,7 +8942,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1177986614}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &695889964
 SpriteRenderer:
@@ -9358,7 +9346,7 @@ SpriteRenderer:
   m_SortingLayerID: 1486866505
   m_SortingLayer: 2
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: ec6ce40afac27bd4cb3c6a1c2c9e1598, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 939f2aa8ba9caba4e9464725cc9d4284, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11486,7 +11474,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1177986614}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &886605732
 SpriteRenderer:
@@ -12134,7 +12122,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1177986614}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &953209248
 SpriteRenderer:
@@ -12662,7 +12650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.2627451}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -12906,7 +12894,7 @@ SpriteRenderer:
   m_SortingLayerID: 1486866505
   m_SortingLayer: 2
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: ec6ce40afac27bd4cb3c6a1c2c9e1598, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 939f2aa8ba9caba4e9464725cc9d4284, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15035,6 +15023,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8794d65a1a38e9428b9cb995097dc74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IAPButtons:
+  - {fileID: 1816634565}
+  - {fileID: 252116521}
 --- !u!114 &1172169416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15095,12 +15086,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 503156825}
   - {fileID: 695889963}
   - {fileID: 886605731}
   - {fileID: 1676979721}
   - {fileID: 1400969638}
   - {fileID: 953209247}
+  - {fileID: 503156825}
   m_Father: {fileID: 299528202}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17645,7 +17636,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1177986614}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1400969639
 SpriteRenderer:
@@ -18654,7 +18645,7 @@ SpriteRenderer:
   m_SortingLayerID: 1486866505
   m_SortingLayer: 2
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: ec6ce40afac27bd4cb3c6a1c2c9e1598, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 939f2aa8ba9caba4e9464725cc9d4284, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -20727,7 +20718,7 @@ SpriteRenderer:
   m_SortingLayerID: 1486866505
   m_SortingLayer: 2
   m_SortingOrder: 12
-  m_Sprite: {fileID: 21300000, guid: ec6ce40afac27bd4cb3c6a1c2c9e1598, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 939f2aa8ba9caba4e9464725cc9d4284, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -20771,12 +20762,12 @@ RectTransform:
   - {fileID: 635690877}
   - {fileID: 1123231682}
   - {fileID: 1654968668}
-  m_Father: {fileID: 489081098}
-  m_RootOrder: 5
+  m_Father: {fileID: 47735116}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1438.3002}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 807.6, y: 707.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1636428948
@@ -20998,7 +20989,7 @@ PrefabInstance:
       objectReference: {fileID: 1172169411}
     - target: {fileID: 8966747238596762675, guid: c3484512e442dad4fa73e56c5342764c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ExitPanel
+      value: ClosePanel
       objectReference: {fileID: 0}
     - target: {fileID: 8966747238596762675, guid: c3484512e442dad4fa73e56c5342764c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -21353,7 +21344,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1177986614}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1676979722
 SpriteRenderer:
@@ -22023,7 +22014,7 @@ SpriteRenderer:
   m_SortingLayerID: 1486866505
   m_SortingLayer: 2
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: ec6ce40afac27bd4cb3c6a1c2c9e1598, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 939f2aa8ba9caba4e9464725cc9d4284, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -23729,19 +23720,7 @@ MonoBehaviour:
       m_Calls: []
   onPurchaseComplete:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1172169415}
-        m_TargetAssemblyTypeName: Purchaser, Assembly-CSharp
-        m_MethodName: PurchaseFirstProduct
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onPurchaseFailed:
     m_PersistentCalls:
       m_Calls:
@@ -24394,7 +24373,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1863479669
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24548,7 +24527,7 @@ SpriteRenderer:
   m_SortingLayerID: 1486866505
   m_SortingLayer: 2
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: ec6ce40afac27bd4cb3c6a1c2c9e1598, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 939f2aa8ba9caba4e9464725cc9d4284, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -24716,7 +24695,7 @@ SpriteRenderer:
   m_SortingLayerID: 1486866505
   m_SortingLayer: 2
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: ec6ce40afac27bd4cb3c6a1c2c9e1598, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 939f2aa8ba9caba4e9464725cc9d4284, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -27264,7 +27243,7 @@ SpriteRenderer:
   m_SortingLayerID: 1486866505
   m_SortingLayer: 2
   m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: ec6ce40afac27bd4cb3c6a1c2c9e1598, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 939f2aa8ba9caba4e9464725cc9d4284, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
