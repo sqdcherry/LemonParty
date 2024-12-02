@@ -12,20 +12,27 @@ public class Purchaser : MonoBehaviour, IStoreListener
     {
         UIManager.instance.UpdateLemonsCountText(coins);
     }
-
-    public void PurchaseFirstProduct(Product product = null)
-    {
-        BuyCoins(1500);
-    }
-
-    private void PurchaseSecondProduct(Product product = null)
+    private void PurchaseSecondProduct(Product product)
     {
         BuyCoins(5000);
     }
 
+    public void PurchaseFirstProduct(Product product)
+    {
+        switch (product.transactionID)
+        {
+            case 0
+                {
+                    BuyCoins(1500);
+                }
+                break;
+        }
+    }
+
+
     public void PurchaseFailed(Product product, PurchaseFailureDescription purchaseFailureDescription)
     {
-        PopUpManager.instance.StartPopUpAnimation("Opration was failed");
+        PopUpManager.instance.StartPopUpAnimation("Operation was failed");
     }
 
     // Some other event handlers - can be empty.
