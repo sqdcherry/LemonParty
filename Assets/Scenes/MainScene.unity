@@ -2879,19 +2879,7 @@ MonoBehaviour:
       m_Calls: []
   onPurchaseFailed:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1172169415}
-        m_TargetAssemblyTypeName: Purchaser, Assembly-CSharp
-        m_MethodName: PurchaseFailed
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onProductFetched:
     m_PersistentCalls:
       m_Calls: []
@@ -15023,6 +15011,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8794d65a1a38e9428b9cb995097dc74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstProductId: com.levelcraft.lp.lemons1500
+  secondProductId: com.levelcraft.lp.lemons5000
   IAPButtons:
   - {fileID: 1816634565}
   - {fileID: 252116521}
@@ -23723,19 +23713,7 @@ MonoBehaviour:
       m_Calls: []
   onPurchaseFailed:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1172169415}
-        m_TargetAssemblyTypeName: Purchaser, Assembly-CSharp
-        m_MethodName: PurchaseFailed
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onProductFetched:
     m_PersistentCalls:
       m_Calls: []

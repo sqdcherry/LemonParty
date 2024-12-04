@@ -7,14 +7,22 @@ using UnityEngine.Purchasing.Extension;
 
 public class Purchaser : MonoBehaviour, IStoreListener
 {
-    [SerializeField] private CodelessIAPButton[] IAPButtons; 
+    public string firstProductId, secondProductId;
+    [SerializeField] private CodelessIAPButton[] IAPButtons;
+
     private void Start()
     {
+        if (IAPButtons == null || IAPButtons.Length < 2)
+        {
+            Debug.LogError("IAPButtons array is not properly initialized.");
+            return;
+        }
+
         IAPButtons[0].onPurchaseComplete.AddListener(PurchaseFirstProduct);
-        //IAPButtons[0].onPurchaseFailed.AddListener(PurchaseFailed);
+        IAPButtons[0].onPurchaseFailed.AddListener(PurchaseFailed);
 
         IAPButtons[1].onPurchaseComplete.AddListener(PurchaseSecondProduct);
-        //IAPButtons[1].onPurchaseFailed.AddListener(PurchaseFailed);
+        IAPButtons[1].onPurchaseFailed.AddListener(PurchaseFailed);
     }
 
     private void BuyCoins(int coins)
@@ -34,24 +42,45 @@ public class Purchaser : MonoBehaviour, IStoreListener
 
     public void PurchaseFailed(Product product, PurchaseFailureDescription purchaseFailureDescription)
     {
+        Debug.Log($"Purchase failed for product {product.definition.id}. Reason: {purchaseFailureDescription.reason}");
         PopUpManager.instance.StartPopUpAnimation("Operation was failed");
     }
 
-    // Some other event handlers - can be empty.
-
     public void OnInitializeFailed(InitializationFailureReason error)
-    { }
-
-    public void OnInitializeFailed(InitializationFailureReason error, string message)
-    { }
-
-    public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
-    { }
-
-    public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
-    { }
+    {
+        Debug.LogError($"Initialization failed: {error}");
+    }
 
     public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs purchaseEvent)
+    {
+        if (purchaseEvent.purchasedProduct.definition.id == firstProductId)
+        {
+            PurchaseFirstProduct(purchaseEvent.purchasedProduct);
+        }
+        else if (purchaseEvent.purchasedProduct.definition.id == secondProductId)
+        {
+            PurchaseSecondProduct(purchaseEvent.purchasedProduct);
+        }
+        else
+        {
+            Debug.LogError("Unknown product ID: " + purchaseEvent.purchasedProduct.definition.id);
+            return PurchaseProcessingResult.Pending;
+        }
+
+        return PurchaseProcessingResult.Complete;
+    }
+
+    public void OnInitializeFailed(InitializationFailureReason error, string message)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
     {
         throw new System.NotImplementedException();
     }
